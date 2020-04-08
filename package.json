@@ -1,0 +1,18 @@
+{
+  "name": "kico-message",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "Innei",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "yarn run tsc -d && cp src/message.vue dist/message.vue"
+  },
+  "devDependencies": {
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
+    "typescript": "~3.8.3",
+    "vue-template-compiler": "^2.6.11",
+    "vue": "^2.6.11"
+  }
+}
