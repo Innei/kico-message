@@ -8,6 +8,10 @@
   "scripts": {
     "build": "yarn run tsc -d && cp src/message.vue dist/message.vue"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Innei/kico-message.git"
+  },
   "devDependencies": {
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
