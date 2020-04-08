@@ -1,13 +1,16 @@
-import Vue from 'vue';
-import Main from './message.vue';
-const MessageConstructor = Vue.extend(Main);
-export var MessageType;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const vue_1 = tslib_1.__importDefault(require("vue"));
+const message_vue_1 = tslib_1.__importDefault(require("./message.vue"));
+const MessageConstructor = vue_1.default.extend(message_vue_1.default);
+var MessageType;
 (function (MessageType) {
     MessageType[MessageType["success"] = 0] = "success";
     MessageType[MessageType["info"] = 1] = "info";
     MessageType[MessageType["error"] = 2] = "error";
     MessageType[MessageType["warning"] = 3] = "warning";
-})(MessageType || (MessageType = {}));
+})(MessageType = exports.MessageType || (exports.MessageType = {}));
 const createMessage = (message, options) => {
     if (!message) {
         throw new Error('message is empty.');
@@ -18,28 +21,28 @@ const createMessage = (message, options) => {
     });
     const dom = vNode.$mount();
     const listDom = document.getElementById('notice-list');
-    listDom?.appendChild(dom.$el);
+    listDom === null || listDom === void 0 ? void 0 : listDom.appendChild(dom.$el);
 };
-export const Message = ((message, options = {}) => {
+exports.Message = ((message, options = {}) => {
     // const { type, timeout } = options
     createMessage(message, options);
 });
 ['success', 'info', 'error', 'warning'].forEach((type) => {
     ;
-    Message[type] = (message, options) => {
+    exports.Message[type] = (message, options) => {
         if (Array.isArray(message)) {
             message.forEach((message, index) => {
                 setTimeout(() => {
-                    createMessage(message, { ...options, type });
+                    createMessage(message, Object.assign(Object.assign({}, options), { type }));
                 }, index * 100);
             });
         }
         else {
-            createMessage(message, { ...options, type });
+            createMessage(message, Object.assign(Object.assign({}, options), { type }));
         }
     };
 });
-export default {
+exports.default = {
     install(Vue, options = {}) {
         const messageListNode = document.createElement('div');
         messageListNode.setAttribute('id', 'notice-list');
@@ -52,8 +55,8 @@ export default {
     position: fixed;
     user-select: none;
     pointer-events: none;`;
-        Vue.prototype.$message = Message;
+        Vue.prototype.$message = exports.Message;
     },
-    Message,
+    Message: exports.Message,
 };
 //# sourceMappingURL=index.js.map
